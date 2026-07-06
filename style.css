@@ -1,0 +1,133 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body, html {
+    height: 100%;
+    overflow: hidden;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+#app-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+#sidebar {
+    width: 360px;
+    background-color: #1e1e1e;
+    padding: 20px;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+}
+
+#sidebar h2 { font-size: 1.3rem; color: #fff; }
+#sidebar h3 { font-size: 1rem; color: #fff; margin-bottom: 8px; }
+hr { border: 0; border-top: 1px solid #333; }
+
+.control-group { display: flex; flex-direction: column; gap: 6px; }
+.upload-section { background: #252525; padding: 12px; border-radius: 6px; border: 1px solid #3a3a3a; }
+.source-link { font-size: 0.8rem; color: #4dabf7; text-decoration: none; margin-top: 4px; }
+.source-link:hover { text-decoration: underline; }
+
+input[type="file"], select {
+    background: #2d2d2d;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    color: #fff;
+    width: 100%;
+    cursor: pointer;
+}
+
+#loader-container {
+    background: #181818;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #333;
+}
+#loader-text { font-size: 0.85rem; margin-bottom: 8px; color: #bbb; }
+.progress-bar { width: 100%; height: 10px; background: #333; border-radius: 5px; overflow: hidden; }
+#progress-fill { width: 0%; height: 100%; background: #2ecc71; transition: width 0.1s linear; }
+
+#db-status {
+    background: #181818;
+    padding: 12px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    border: 1px solid #2a2a2a;
+}
+.warning { color: #f59f00; font-weight: bold; }
+.success { color: #2ecc71; font-weight: bold; }
+.hidden { display: none; }
+
+.date-row { display: flex; gap: 10px; margin-top: 8px; }
+.date-row div { flex: 1; }
+.date-row label { font-size: 0.8rem; color: #aaa; margin-bottom: 4px; display: block; }
+
+.compare-card { padding: 12px; border-radius: 6px; margin-bottom: 12px; }
+.card-red { background: rgba(255, 71, 87, 0.08); border: 1px solid rgba(255, 71, 87, 0.3); }
+.card-blue { background: rgba(30, 144, 255, 0.08); border: 1px solid rgba(30, 144, 255, 0.3); }
+.red-title { color: #ff4757; margin-bottom: 8px; font-size: 0.95rem; }
+.blue-title { color: #1e90ff; margin-bottom: 8px; font-size: 0.95rem; }
+
+#map-container { flex-grow: 1; height: 100%; }
+#map { width: 100%; height: 100%; }
+
+.pin-red {
+    background-color: #ff4757;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(255, 71, 87, 0.8);
+}
+.pin-blue {
+    background-color: #1e90ff;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(30, 144, 255, 0.8);
+}
+
+.custom-cluster-red {
+    background-color: rgba(255, 71, 87, 0.75);
+    border: 3px solid #ff4757;
+    border-radius: 50%;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 34px;
+    font-size: 0.85rem;
+    box-shadow: 0 0 12px rgba(255, 71, 87, 0.6);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.custom-cluster-blue {
+    background-color: rgba(30, 144, 255, 0.75);
+    border: 3px solid #1e90ff;
+    border-radius: 50%;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 34px;
+    font-size: 0.85rem;
+    box-shadow: 0 0 12px rgba(30, 144, 255, 0.6);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.marker-cluster div,
+.custom-cluster-red,
+.custom-cluster-blue {
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    /* 1px solid black stroke around the letters */
+    -webkit-text-stroke: 1px #000000;
+    /* Multi-layered shadow to guarantee separation from the background */
+}

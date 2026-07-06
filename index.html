@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NI Crime Map</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="app-container">
+        <aside id="sidebar">
+            <h2>NI Crime Analytics</h2>
+
+            <div class="control-group upload-section">
+                <label for="csv-file-input"><strong>Add Newer Data:</strong></label>
+                <input type="file" id="csv-file-input" accept=".csv" />
+                <a href="https://data.police.uk/data/" target="_blank" class="source-link">Download future PSNI data
+                    here ↗</a>
+            </div>
+
+            <div id="loader-container">
+                <p id="loader-text">Checking local database...</p>
+                <div class="progress-bar">
+                    <div id="progress-fill"></div>
+                </div>
+            </div>
+
+            <div id="db-status">
+                <p>Status: <span id="status-text" class="warning">Initializing...</span></p>
+                <hr style="margin: 8px 0; border-color: #333;">
+                <p>Total Archive Size: <strong id="total-db-count">0</strong> records</p>
+                <p>Database Date Range: <strong id="data-range-text">- to -</strong></p>
+                <hr style="margin: 8px 0; border-color: #333;">
+                <p style="color: #4dabf7;">Currently Displayed: <strong id="plotted-records-count">0</strong> incidents
+                </p>
+
+                <div id="compare-count-breakdown" class="hidden"
+                    style="margin-top: 6px; padding-top: 6px; border-top: 1px dashed #333; font-size: 0.85rem;">
+                    <p style="color: #ff4757; margin-bottom: 2px;">● Range A Total: <strong
+                            id="count-range-a">0</strong></p>
+                    <p style="color: #1e90ff;">● Range B Total: <strong id="count-range-b">0</strong></p>
+                </div>
+            </div>
+
+            <div id="filter-section" class="hidden">
+                <hr>
+                <label for="view-mode-select"><strong>Visualization Mode:</strong></label>
+                <select id="view-mode-select">
+                    <option value="cluster">Cluster View</option>
+                    <option value="heat">Heatmap View</option>
+                    <option value="compare">Comparison Mode</option>
+                </select>
+
+                <div id="standard-controls">
+                    <hr>
+                    <h3>Filters & Date Range</h3>
+                    <label for="category-filter">Crime Category:</label>
+                    <select id="category-filter">
+                        <option value="all">All Categories</option>
+                    </select>
+
+                    <div class="date-row">
+                        <div>
+                            <label>From Month:</label>
+                            <select id="start-date-select"></select>
+                        </div>
+                        <div>
+                            <label>To Month:</label>
+                            <select id="end-date-select"></select>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="compare-controls" class="hidden">
+                    <hr>
+                    <div class="compare-card card-red">
+                        <h4 class="red-title">● Range A (Red Clusters)</h4>
+                        <label>Category:</label>
+                        <select id="comp-a-category">
+                            <option value="all">All Categories</option>
+                        </select>
+
+                        <div class="date-row">
+                            <div><label>From:</label><select id="comp-a-start"></select></div>
+                            <div><label>To:</label><select id="comp-a-end"></select></div>
+                        </div>
+                    </div>
+
+                    <div class="compare-card card-blue">
+                        <h4 class="blue-title">● Range B (Blue Clusters)</h4>
+                        <label>Category:</label>
+                        <select id="comp-b-category">
+                            <option value="all">All Categories</option>
+                        </select>
+
+                        <div class="date-row">
+                            <div><label>From:</label><select id="comp-b-start"></select></div>
+                            <div><label>To:</label><select id="comp-b-end"></select></div>
+                        </div>
+                    </div>
+
+                    <button id="run-compare-btn"
+                        style="background: #2ecc71; color: #000; font-weight: bold; border: none; padding: 10px; width: 100%; border-radius: 4px; margin-top: 10px; cursor: pointer;">
+                        Plot/Update Comparison Ranges
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main id="map-container">
+            <div id="map"></div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+    <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
