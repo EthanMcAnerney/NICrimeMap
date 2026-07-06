@@ -19,7 +19,7 @@ self.onmessage = async function(e) {
             const path = `data/${folderName}/${folderName}-northern-ireland-street.csv`;
 
             try {
-                const response = await fetch(`../${path}`);
+                const response = await fetch(`./${path}`);
                 if (response.ok) {
                     const csvText = await response.text();
                     
